@@ -6,8 +6,8 @@ const val = {
     body: {
       type: 'object',
       properties: {
-        id: { type: 'number' },
-        key: { type: 'number' },
+        deviceName: { type: 'string' },
+        schoolName: { type: 'string' },
         values: {
           type: 'array',
           items: {
