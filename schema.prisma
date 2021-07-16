@@ -1,0 +1,35 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Device {
+    id         Int     @id @default(autoincrement())
+    name       String  @db.VarChar(55)
+    schoolName String  @map("school_name") @db.VarChar(55)
+    entry      Entry[]
+
+    @@map("devices")
+}
+
+model Entry {
+    id         Int        @id @default(autoincrement())
+    value      Float      @db.Real
+    sensorType SensorType @map("sensor_type")
+    deviceId   Int        @map("device_id")
+    timestamp  DateTime   @db.Timestamp(6)
+    device     Device     @relation(fields: [deviceId], references: [id])
+
+    @@map("entries")
+}
+
+enum SensorType {
+    light
+    temp
+
+    @@map("sensortype")
+}
