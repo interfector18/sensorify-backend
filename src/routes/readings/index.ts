@@ -1,5 +1,5 @@
 import { FastifyPluginAsync } from "fastify";
-import { prisma, PrismaPromise } from "prisma/client";
+import { prisma, PrismaPromise } from "../../prisma/client";
 
 const val = {
   schema: {
