@@ -1,5 +1,6 @@
 import AutoLoad from 'fastify-autoload';
 import fastify from 'fastify';
+import fastifyCors from 'fastify-cors';
 // import * as fastifyAutoPush from 'fastify-auto-push';
 // import fastifyHelmet from 'fastify-helmet';
 // import fastifyCompress from 'fastify-compress';
@@ -39,6 +40,11 @@ async function main() {
   // through your application
   void app.register(AutoLoad, {
     dir: path.join(__dirname, 'plugins')
+  })
+
+  app.register(fastifyCors, {
+    origin: true,
+    methods: 'GET,POST,PUT'
   })
 
   // This loads all plugins defined in routes
